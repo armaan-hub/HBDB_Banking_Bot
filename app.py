@@ -29,7 +29,11 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Initialize Mistral client
-api_key = "rKAog5VOtjTBkMAXkr1OXNcBgNn97dzY"
+try:
+    api_key = st.secrets["MISTRAL_API_KEY"]
+except (KeyError, FileNotFoundError):
+    api_key = "rKAog5VOtjTBkMAXkr1OXNcBgNn97dzY"
+
 client = Mistral(api_key=api_key)
 
 # Load FAQ data
