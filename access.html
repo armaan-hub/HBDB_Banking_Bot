@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HBDB Banking Bot - Access</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 600px;
+            width: 100%;
+            padding: 50px 30px;
+            text-align: center;
+        }
+        
+        .header {
+            margin-bottom: 40px;
+        }
+        
+        .icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+        
+        .status {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 15px;
+            margin-bottom: 30px;
+            text-align: left;
+            border-radius: 5px;
+        }
+        
+        .status-indicator {
+            color: #4caf50;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            background: #4caf50;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(76, 175, 80, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(76, 175, 80, 0);
+            }
+        }
+        
+        .button-container {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            flex: 1;
+            min-width: 200px;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-secondary {
+            background: #f5f5f5;
+            color: #333;
+            border: 2px solid #667eea;
+        }
+        
+        .btn-secondary:hover {
+            background: #667eea;
+            color: white;
+        }
+        
+        .info-section {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: left;
+            margin-bottom: 20px;
+        }
+        
+        .info-section h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        .info-section p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 8px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .url-box {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        
+        .url-box p {
+            color: #1976d2;
+            font-weight: bold;
+            word-break: break-all;
+        }
+        
+        .copy-btn {
+            background: #2196f3;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+        
+        .copy-btn:hover {
+            background: #1976d2;
+        }
+        
+        .footer {
+            color: #999;
+            font-size: 12px;
+            margin-top: 30px;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+        
+        .feature-list {
+            list-style: none;
+            margin: 15px 0;
+        }
+        
+        .feature-list li {
+            color: #666;
+            margin: 8px 0;
+            font-size: 14px;
+        }
+        
+        .feature-list li:before {
+            content: "✅ ";
+            color: #4caf50;
+            margin-right: 8px;
+        }
+        
+        .warning {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: left;
+            border-radius: 5px;
+            font-size: 14px;
+            color: #e65100;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="icon">🏦</div>
+            <h1>HBDB Banking Bot</h1>
+            <p class="subtitle">Powered by Mistral Large AI</p>
+        </div>
+        
+        <div class="status">
+            <div class="status-indicator">
+                <span class="status-dot"></span>
+                Bot is Live & Running
+            </div>
+            <p style="color: #2e7d32; font-size: 13px; margin-top: 5px;">Created: February 14, 2026</p>
+        </div>
+        
+        <div class="url-box">
+            <p>Local URL: http://localhost:8501</p>
+            <button class="copy-btn" onclick="copyToClipboard('http://localhost:8501')">Copy URL</button>
+        </div>
+        
+        <div class="button-container">
+            <a href="http://localhost:8501" class="btn btn-primary">🚀 Open Bot Now</a>
+            <a href="DEPLOYMENT.md" class="btn btn-secondary">📖 Deployment Guide</a>
+        </div>
+        
+        <div class="info-section">
+            <h3>✨ Features</h3>
+            <ul class="feature-list">
+                <li>Interactive Chat Interface</li>
+                <li>50+ Banking FAQs Knowledge Base</li>
+                <li>Real-time Streaming Responses</li>
+                <li>Mistral Large AI Model</li>
+                <li>Chat History Management</li>
+                <li>Professional UI Design</li>
+            </ul>
+        </div>
+        
+        <div class="info-section">
+            <h3>🌐 Deployment Options</h3>
+            <p><strong>Local Access:</strong> http://localhost:8501</p>
+            <p><strong>Network Access:</strong> http://192.168.1.139:8501</p>
+            <p><strong>Cloud Deployment:</strong> See DEPLOYMENT.md for Streamlit Cloud setup</p>
+        </div>
+        
+        <div class="warning">
+            💡 <strong>Tip:</strong> The bot is currently running locally. To share with others remotely, deploy to Streamlit Cloud (see DEPLOYMENT.md).
+        </div>
+        
+        <div class="info-section">
+            <h3>📂 Project Files</h3>
+            <p>Location: Data Science Class/19. 14-Dec-2026/Banking/</p>
+            <p>Files: app.py, requirements.txt, hbdb_banking_faqs.csv, README.md, DEPLOYMENT.md</p>
+        </div>
+        
+        <div class="footer">
+            <p>🏦 HBDB Banking Bot | Version 1.0 | Mistral Large AI | Streamlit</p>
+            <p>All files are in the Banking folder in your Data Science Class directory</p>
+        </div>
+    </div>
+    
+    <script>
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert('URL copied to clipboard!');
+            }).catch(() => {
+                alert('Failed to copy. Manual copy: ' + text);
+            });
+        }
+    </script>
+</body>
+</html>
